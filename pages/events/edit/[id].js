@@ -11,7 +11,10 @@ import Layout from "../../../components/Layout";
 import { API_URL } from "../../../config/index";
 import Image from "next/image";
 import Modal from "./../../../components/Modal";
+<<<<<<< HEAD
 import ImageUpload from "../../../components/ImageUpload";
+=======
+>>>>>>> 3892a021b4ed0d761dd248254c14469a1ce890e7
 
 export default function EditEventPage({ evt }) {
   const [values, setValues] = useState({
@@ -166,9 +169,13 @@ export default function EditEventPage({ evt }) {
           <FaImage /> Set Image
         </button>
       </div>
+<<<<<<< HEAD
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
       </Modal>
+=======
+      <Modal show={showModal} onClose={() => setShowModal(false)}></Modal>
+>>>>>>> 3892a021b4ed0d761dd248254c14469a1ce890e7
     </Layout>
   );
 }
