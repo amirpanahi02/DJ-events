@@ -169,7 +169,6 @@ export default function EditEventPage({ evt }) {
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
       </Modal>
-      <Modal show={showModal} onClose={() => setShowModal(false)}></Modal>
     </Layout>
   );
 }

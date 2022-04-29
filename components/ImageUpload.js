@@ -17,7 +17,6 @@ export default function ImageUpload({ evtId, imageUploaded }) {
       body: formData,
     });
     if (res.ok) return imageUploaded();
-    e.preventDefault();
     toast.error("Something Went Wrong!");
   };
   const handleFileChange = (e) => {
