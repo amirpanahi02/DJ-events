@@ -12,8 +12,9 @@ import { API_URL } from "../../../config/index";
 import Image from "next/image";
 import Modal from "./../../../components/Modal";
 import ImageUpload from "../../../components/ImageUpload";
+import { parseCookies } from "./../../../helpers/index";
 
-export default function EditEventPage({ evt }) {
+export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
     name: evt.name,
     performers: evt.performers,
@@ -36,6 +37,7 @@ export default function EditEventPage({ evt }) {
     const res = await fetch(`${API_URL}/events/${evt.id}`);
     const data = await res.json();
     setImagePreview(data.image.formats.thumbnail.url);
+    console.log(data.image.formats.thumbnail.url);
     setShowModal(false);
   };
   const handleSubmit = async (e) => {
@@ -48,11 +50,14 @@ export default function EditEventPage({ evt }) {
     const res = await fetch(`${API_URL}/events/${evt.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "aplication/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
     if (!res.ok) {
+      if (res.status === 401 || res.status === 403)
+        return toast.error("Unathorized");
       toast.error("Something Went Wrong!!");
     } else {
       const evt = await res.json();
@@ -167,7 +172,11 @@ export default function EditEventPage({ evt }) {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
+        <ImageUpload
+          evtId={evt.id}
+          imageUploaded={imageUploaded}
+          token={token}
+        />
       </Modal>
     </Layout>
   );
@@ -176,10 +185,12 @@ export default function EditEventPage({ evt }) {
 export async function getServerSideProps({ params: { id }, req }) {
   const res = await fetch(`${API_URL}/events/${id}`);
   const evt = await res.json();
-  console.log(req.headers.cookie);
+
+  const { token } = parseCookies(req);
   return {
     props: {
       evt,
+      token,
     },
   };
 }
