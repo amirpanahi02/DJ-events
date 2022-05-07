@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 export default function ImageUpload({ evtId, imageUploaded, token }) {
   const [image, setImage] = useState(null);
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("files", image);
     formData.append("ref", "events");
