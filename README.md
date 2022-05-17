@@ -4,6 +4,8 @@
 
 # Usage
 
+<<<<<<< HEAD
+
 ### Setup Backend
 
 The Strapi backend can be found [here](https://github.com/bradtraversy/dj-events-backend)
@@ -11,6 +13,18 @@ The Strapi backend can be found [here](https://github.com/bradtraversy/dj-events
 Clone the repo above and run your backend
 
 ### Run the Server
+
+=======
+
+### Setup Backend
+
+The Strapi backend can be found [here](https://github.com/bradtraversy/dj-events-backend)
+
+Clone the repo above and run your backend
+
+### Run the Server
+
+> > > > > > > 09f748db3c416bf3345c92639b9fa646ab77e77c
 
 ```bash
 npm run dev
