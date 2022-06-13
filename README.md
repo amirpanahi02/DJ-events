@@ -10,12 +10,6 @@ Clone the repo above and run your backend
 
 ### Run the Server
 
-=======
-
-# Usage
-
-### Run the Server
-
 ```bash
 npm run dev
 # or
